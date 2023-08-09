@@ -67,33 +67,38 @@
 
 # 3143. 가장 빠른 문자열 타이핑
 
-import sys
-sys.stdin = open('input_3143.txt', 'r')
-
-T = int(input())
-for tc in range(1, T+1):
-    my_str, word = map(list, input().split())
-    min_num = 0
-    num = 0
-    word_num = 0
-    str_case = ''
-    word_case = ''
-
-    while num != (len(my_str) - (len(word)-1)):
-        str_case = ''
-        word_case = ''
-        for i in range(len(word)):
-            str_case += my_str[num + i]
-        for i in word:
-            word_case += i
-        if str_case == word_case:
-            min_num += 1
-            word_num += 1
-        num += 1
-
-    min_num += len(my_str) - (word_num * len(word))
-
-    print(f'#{tc} {min_num}')
+# import sys
+# sys.stdin = open('input_3143.txt', 'r')
+#
+# T = int(input())
+# for tc in range(1, T+1):
+#     my_str, word = map(list, input().split())
+#     min_num = 0
+#     num = 0
+#     word_num = 0
+#     str_case = ''
+#     word_case = ''
+#
+#     while num != (len(my_str) - (len(word)-1)):     # 반복의 횟수 설정
+#         str_case = ''
+#         word_case = ''
+#         for i in range(len(word)):
+#             str_case += my_str[num + i]    # num으로 기준을 잡고 word의 길이만큼 쟁여둔다.
+#         for j in word:
+#             word_case += j          # word 자체를 쟁여둔다
+#         if str_case == word_case:   # 쟁여둔거 끼리 같다면 결과값을 하나 더해준다.
+#             min_num += 1
+#             word_num += 1           # 마지막에 계산하려고 word가 등장한 횟수를 세줌
+#             num += len(word)        # word가 등장했다면 그 범위만큼은 이미 키 누른 횟수에 속했으므로 점프해줌
+#             if num >= len(my_str) - len(word) + 1:    # num이 일정 기준을 초과했을때는 range 오류 방지를 위해 탈출
+#                 break
+#         else:
+#             num += 1                # 쟁여둔거 끼리 다르다면 num을 한칸 이동해서 다음을 살펴본다.
+#
+#     min_num += len(my_str) - (word_num * len(word))
+#     # word가 등장했을 때는 while문 안에서 이미 키를 눌러줬기 때문에 등장한 횟수만큼 word 길이를 곱해서 빼준다.
+#
+#     print(f'#{tc} {min_num}')
 
 
 
